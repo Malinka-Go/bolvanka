@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <link rel="stylesheet" href="styles.css">
+     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+     <script src="https://unpkg.com/ton-core@0.0.9-beta.83/dist/ton-core.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <h1>Telegram Mini App</h1>
+		<div class="kubik">
+		<img src="kub.png" />
+		</div>
+		
+		<div id="ton-connect-button"></div>
+		<br>
+		<br>
+		<button class="c-button" onclick="mintNFT()">Минт NFT</button>
+
+  <script>
+    const connector = new TON_CONNECT_UI.TonConnectUI({
+      manifestUrl: "https://malinka-go.github.io/bolvanka/tonconnect-manifest.json",
+      buttonRootId: "ton-connect-button"
+    });
+
+    async function mintNFT() {
+      const wallet = await connector.connectedWallet;
+      if (!wallet) {
+        alert("Сначала подключи кошелёк");
+        return;
+      }
+
+      const Address = tonCore.Address;
+      const beginCell = tonCore.beginCell;
+
+      // Здесь подставь адрес своего смарт-контракта
+      const contractAddress = "kQAIYlrr3UiMJ9fqI-B4j2nJdiiD7WzyaNL1MX_wiONc4F6o";
+
+      // Здесь — логика формирования payload под твой контракт
+      const payload = beginCell()
+        .storeUint(0x01, 32)              // Пример: op код "mint"
+        .storeUint(0, 64)                 // query_id
+        .storeAddress(Address.parse(wallet.account.address)) // кому минтить
+        .endCell();
+
+      const base64Payload = payload.toBoc().toString("base64");
+
+      const tx = {
+        validUntil: Math.floor(Date.now() / 1000) + 60,
+        messages: [
+          {
+            address: contractAddress,
+            amount: "0.1", // 0.01 TON
+            payload: base64Payload
+          }
+        ]
+      };
+
+      try {
+        await connector.sendTransaction(tx);
+        alert("Транзакция на минт отправлена!");
+      } catch (e) {
+        console.error(e);
+        alert("Ошибка при отправке транзакции.");
+      }
+    }
+  </script>
+
+<br>
+<br>
+    
+    <div class="menu">
+	<ul>
+		<li><a href="#"><img src="icon3.png"></a></li>
+		<li><a href="#"><img src="icon4.png"></a></li>
+		<li><a href="#"><img src="icon3.png"></a></li>
+		<li><a href="#"><img src="icon4.png"></a></li>
+	</ul>
+	</div>
+	</div>
+        
+    </div>
+</body>
+</html>

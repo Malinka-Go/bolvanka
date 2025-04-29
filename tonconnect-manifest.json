@@ -1,0 +1,12 @@
+{
+  "manifest_version": "0.1.0",
+  "name": "My NFT App",
+  "description": "Приложение для минта NFT через TON",
+  "url": "https://malinka-go.github.io/bolvanka/", 
+  "iconUrl": "https://malinka-go.github.io/bolvanka/icon.png",
+  "termsOfUseUrl": "https://malinka-go.github.io/bolvanka/terms.html",
+  "privacyPolicyUrl": "https://malinka-go.github.io/bolvanka/privacy.html",
+  "supportedWallets": ["tonkeeper"],
+  "bridgeUrl": "https://bridge.tonapi.io/bridge",
+  "platforms": ["telegram"]
+}
