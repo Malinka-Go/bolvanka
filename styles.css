@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ff3a99;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 100vw;
+    height: 100vh;
+}
+
+.app-container {
+    background: #202020;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+	color: white;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Стили для меню */
+.menu {
+	background-color: #333333;
+	border-radius: 10px;
+    display: flex;
+    justify-content: space-around; /* Равномерное распределение картинок */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.menu ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.menu li {
+    flex: 1; /* Равное распределение ширины между пунктами меню */
+    text-align: center;
+}
+
+.menu li a {
+    display: block;
+    width: 100%; /* Адаптивная ширина */
+    height: 100%; /* Адаптивная высота */
+}
+
+.menu li img {
+    width: 100px; /* Установите фиксированную ширину для картинок */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    max-width: 100%; /* Картинки будут адаптироваться под контейнер */
+    transition: transform 0.3s ease;
+}
+
+.menu li img:hover {
+    transform: scale(1.05); /* Легкое увеличение при наведении */
+}
+/* Стили для кнопки */
+a.button7 {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: .8em 1em calc(.8em + 3px);
+  border-radius: 3px;
+  background: #AFEEEE;
+  box-shadow: 0 -3px rgb(53,167,110) inset;
+  transition: 0.2s;
+} 
+a.button7:hover { background: rgb(53, 167, 110); }
+a.button7:active {
+  background: rgb(33,147,90);
+  box-shadow: 0 3px rgb(33,147,90) inset;
+}
+/* дополнительные стили для кнопки синей */
+.c-button {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4676D7;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+}
