@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFT Minter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    button.loading {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .status-message {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .status-message.success {
+      color: green;
+    }
+    .status-message.error {
+      color: red;
+    }
+    #ton-connect-button {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>NFT Minter</h1>
+  <div id="ton-connect-button"></div>
+  <div class="form-group">
+    <label for="nft-description">Description (up to 1023 bytes):</label>
+    <textarea id="nft-description" placeholder="Enter your NFT description"></textarea>
+  </div>
+  <button id="mint-button" onclick="mintNFT()">Mint NFT</button>
+  <div id="mint-status" class="status-message"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ton@13.6.0/dist/ton.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tonconnect/ui@1.0.0/dist/tonconnect-ui.min.js"></script>
+  <script src="./buttons.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      if (typeof TON_CONNECT_UI === 'undefined') {
+        document.getElementById('mint-status').textContent = 'Ошибка: TON Connect UI не загрузился';
+        document.getElementById('mint-status').classList.add('error');
+      } else {
+        console.log('TON Connect UI loaded');
+        const button = document.getElementById('ton-connect-button');
+        if (button.innerHTML) {
+          console.log('TON Connect button rendered:', button.innerHTML);
+        } else {
+          console.log('TON Connect button not rendered');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
